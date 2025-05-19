@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicios del Tuning - Tuning para Todos</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.85);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0066cc 0%, #cc0000 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-bottom: 5px solid #ffcc00;
+            position: relative;
+        }
+        
+        .nav-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #ffcc00;
+            color: #333;
+            padding: 8px 15px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: #cc0000;
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        h1 {
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2.5em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        h2 {
+            color: #0066cc;
+            border-bottom: 2px solid #cc0000;
+            padding-bottom: 10px;
+            font-family: 'Arial Narrow', sans-serif;
+        }
+        
+        /* Estilos para la línea de tiempo */
+        .timeline-section {
+            margin: 40px 0;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            border-left: 5px solid #cc0000;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-title {
+            color: #0066cc;
+            text-align: center;
+            font-family: 'Arial Black', sans-serif;
+            font-size: 2em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #0066cc;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            border-radius: 10px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border: 1px solid #e0e0e0;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: #cc0000;
+            font-size: 1.3em;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #0066cc;
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .resource-link {
+            display: block;
+            text-align: center;
+            margin: 30px auto;
+            max-width: 300px;
+            background-color: #0066cc;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .resource-link:hover {
+            background-color: #cc0000;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .resource-link:active {
+            transform: translateY(1px);
+        }
+        
+        @media screen and (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd)::after,
+            .timeline-item:nth-child(even)::after {
+                left: 18px;
+            }
+            
+            .nav-link {
+                position: static;
+                display: block;
+                margin: 10px auto;
+                width: fit-content;
+            }
+        }
+        
+        /* Estilos adicionales para mejorar el tema de tuning */
+        .car-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .car-gallery img {
+            width: 30%;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .car-gallery img:hover {
+            transform: scale(1.05);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            border-radius: 8px;
+            margin-top: 30px;
+        }
+        
+        .footer-link {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <a href="https://treixboxnet7.github.io/Pagina-Tuning/" class="nav-link" target="_blank">Regresar</a>
+            <h1>Tuning para Todos</h1>
+            <p>La evolución del arte automotriz</p>
+        </header>
+        
+        <section>
+            <h2>La Pasión por Personalizar</h2>
+            <p>El tuning automotriz es más que una modificación de vehículos, es una forma de expresión artística que combina ingeniería, diseño y personalidad. Desde sus humildes comienzos hasta la actualidad, el tuning ha evolucionado para convertirse en un fenómeno global.</p>
+            
+            <div class="car-gallery">
+                <img src="https://images.unsplash.com/photo-1517524008697-84bbe3c3fd98" alt="Hot Rod clásico">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" alt="Coche tuning moderno">
+                <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d" alt="Drifting">
+            </div>
+            
+            <a href="https://www.superstreetonline.com/" class="resource-link" target="_blank">Explora más sobre Tuning</a>
+        </section>
+        
+        <!-- Sección de línea de tiempo -->
+        <div class="timeline-section">
+            <h2 class="timeline-title">Línea de Tiempo del Tuning</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1950s</div>
+                        <p>Nacen los Hot Rods en Estados Unidos, donde entusiastas modificaban autos antiguos para carreras callejeras, eliminando partes innecesarias para reducir peso.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1960s</div>
+                        <p>El tuning llega a Europa, especialmente en Alemania e Italia, donde se populariza modificar Volkswagen Beetles y pequeños deportivos.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1970s</div>
+                        <p>Japón desarrolla su propia cultura de tuning con los "kaido racers" y comienzan las modificaciones extremas de suspensiones y motores.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1980s</div>
+                        <p>Surgen los primeros body kits comerciales y se populariza el uso de alerones grandes. Nace el Tokyo Auto Salon en 1983.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">1990s</div>
+                        <p>La cultura del drifting impulsa nuevas modificaciones. Aparecen revistas especializadas y el tuning se vuelve más accesible.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2000s</div>
+                        <p>El éxito de "Rápidos y Furiosos" globaliza el tuning. Surge el estilo "VIP" en Japón y el "Euro tuning" en Europa.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2010s-Presente</div>
+                        <p>El tuning evoluciona hacia lo digital con ECU programables. Aumenta el interés por coches clásicos modificados y comienza el tuning de eléctricos.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="https://noticias.autocosmos.com.ec/listado?t=Tuning" class="resource-link" target="_blank">Noticias Actuales de Tuning</a>
+        </div>
+        
+        <section>
+            <h2>El Futuro del Tuning</h2>
+            <p>Con la llegada de los vehículos eléctricos y las tecnologías autónomas, el tuning enfrenta nuevos desafíos y oportunidades. La personalización ahora incluye software, interfaces hombre-máquina y nuevos materiales, manteniendo viva la esencia de expresar la individualidad a través del automóvil.</p>
+            
+            <p>Para aprender más sobre las últimas tendencias en tuning, visita <a href="https://www.motortrend.com/how-to/" target="_blank" style="color: #cc0000; font-weight: bold;">MotorTrend</a>, el recurso definitivo para entusiastas del automóvil.</p>
+        </section>
+        
+        <footer>
+            <p>© 2023 Tuning para Todos - Todos los derechos reservados</p>
+            <p>Pasíon por los autos desde 1950 | <a href="https://www.instagram.com/explore/tags/cartuning/" class="footer-link" target="_blank">#Cartuning en Instagram</a></p>
+        </footer>
+    </div>
+</body>
+</html>
